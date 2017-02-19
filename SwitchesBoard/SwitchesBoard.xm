@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        [self setBackgroundColor:[UIColor blueColor]];
+        [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
@@ -236,15 +236,6 @@
 - (UIColor *)backgroundColor {
     return [UIColor redColor];
 }
-//- (void)updateAppearanceForController:(id <SBDashBoardViewControlling>)arg1 withAnimationSettings:(BSAnimationSettings *)arg2 completion:(void (^)(BOOL))arg3 {
-//    
-//}
-//- (void)updateAppearanceForController:(id <SBDashBoardViewControlling>)arg1 {
-//    
-//}
-//- (void)updateBehaviorForController:(id <SBDashBoardViewControlling>)arg1 {
-//    
-//}
 %end
 
 
@@ -260,11 +251,12 @@
          [currentControllers addObject:switchesBoardVC];// atIndex:0];
     }
     
-    NSLog(@"********* initWithPageViewControllers \n\n\n\n %@ \n\n\n\n", currentControllers);
+    [currentControllers exchangeObjectAtIndex:2 withObjectAtIndex:3];
     return %orig(currentControllers, arg2, arg3);
 }
 
 -(void)_setAllowedPageViewControllers:(NSArray*)controllers {
+    %orig(controllers);
     NSMutableArray *currentControllers = [controllers mutableCopy];
     
     SwitchesBoardPageViewController *switchesBoardVC = [%c(SwitchesBoardPageViewController) sharedInstance];
